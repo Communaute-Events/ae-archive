@@ -6,7 +6,11 @@
   "scripts": {
     "svelte:build": "cd svelte && npm run build"
   },
-  "keywords": ["neutralino","webdev","ts"],
+  "keywords": [
+    "neutralino",
+    "webdev",
+    "ts"
+  ],
   "author": "OrigamingWasTaken",
   "license": "ISC",
   "devDependencies": {

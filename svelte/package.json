@@ -1,14 +1,6 @@
 {
   "name": "svelte",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
-  },
   "devDependencies": {
     "@melt-ui/pp": "^0.3.0",
     "@melt-ui/svelte": "^0.70.0",
@@ -19,5 +11,17 @@
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "type": "module",
+  "dependencies": {
+    "@neutralinojs/lib": "^3.13.0",
+    "@rwh/keystrokes": "^1.5.4"
   }
 }
