@@ -4,17 +4,38 @@
 
 ---
 
-# Neutralino + Svelte
+# AutoEvent
 
-This is a starter template for neutralino that uses **Vite** and **Svelte**. You can directly write your app using svelte!
+AutoEvent is a lightweight and blazing fast event launcher built with [Neutralino](https://neutralino.js.org) and [Svelte](https://svelte.dev). It is currently in construction.
 
-## Using the template
-Simply use the command `neu create app_name --template OrigamingWasTaken/neutralino-svelte`
+## Building
 
-## Running your app
+(Note: If you're on Windows, you must install WSL)
 
-To run your app, install the `@neutralinojs/lib` cli (you can use `npx neu` after doing `npm install` in the root folder) and run `neu run`.
+Install Jq
+```shell
+# On macOS:
+brew install jq
+# On Linux or Windows/WSL:
+sudo apt-get install jq
+```
 
-## Building your app
+Clone the repo
+```shell
+git clone https://github.com/Communaute-Events/AutoEvent.git
+```
 
-Simply use the `neu build` command
+Install the neu-cli
+```shell
+npm install -g @neutralinojs/neu
+```
+
+Run the build script for your target OS
+```shell
+# MacOS
+./build mac
+# Linux
+./build linux
+# Windows
+./build win
+```
