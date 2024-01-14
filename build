@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Function to display help message
+show_help() {
+  echo "Usage: $0 [mac|linux|win]"
+  echo "Execute the script based on the provided argument."
+  echo "  mac   Build app for Mac"
+  echo "  linux Build app for linux"
+  echo "  win   Build app for windows"
+}
+
+# Check if no arguments are provided
+if [ "$#" -eq 0 ]; then
+  echo "Error: Please provide an argument."
+  show_help
+  exit 1
+fi
+
+# Check for help option
+if [ "$1" == "--help" ]; then
+  show_help
+  exit 0
+fi
+
+# Check the provided argument
+case $1 in
+  mac)
+    ./building/build-mac.sh
+    ;;
+  linux)
+    ./building/build-linux.sh
+    ;;
+  win)
+    ./building/build-win.sh
+    ;;
+  *)
+    echo "Error: Invalid argument. Please use 'mac', 'linux', or 'win'."
+    show_help
+    exit 1
+    ;;
+esac
+
+exit 0
