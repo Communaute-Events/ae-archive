@@ -7,7 +7,9 @@
   "enableServer": true,
   "enableNativeAPI": true,
   "nativeAllowList": [
-    "app.*"
+    "app.*",
+    "os.*",
+    "window.*"
   ],
   "modes": {
     "window": {
@@ -17,7 +19,8 @@
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/svelte/public/favicon.png",
-      "enableInspector": true
+      "enableInspector": true,
+      "hidden": true
     }
   },
   "cli": {

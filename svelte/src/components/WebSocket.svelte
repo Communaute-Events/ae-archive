@@ -7,13 +7,20 @@
 	export let status = false;
 
 	// Variables
-    const dispatch = createEventDispatcher<{message: string}>()
-	let websocketPromise: Promise<WebSocket>
+    const dispatch = createEventDispatcher<{message: string}>();
+	let websocketPromise: Promise<void>;
+	let isReconnecting = false;
 
 	// Functions
 	async function awaitWebsocket(url: string): Promise<WebSocket> {
 		return new Promise<WebSocket>((resolve, reject) => {
-			const socket = new WebSocket(url)
+			let socket: WebSocket;
+			try {
+				socket = new WebSocket(url)
+			} catch (err) {
+				wsError((err as Event).toString())
+				return
+			}
 
 			socket.onopen = () => {
 				status = true
@@ -27,31 +34,40 @@
 	}
 
 	async function wsError(err: string | Event) {
-		console.log("Websocket Error: \n" + err)
+		if (isReconnecting) return;
+		isReconnecting = true
+		console.error("Websocket Error: \n" + err)
 		status = false
-		getWebsocket()
+		console.log("Restarting Websocket in 5 secondes")
+		setTimeout(getWebsocket,5000)
 	}
   
-    async function getWebsocket(): Promise<WebSocket> {
+    async function getWebsocket() {
+		console.log("Connecting to the WebSocket...")
         const res = await fetch("https://raw.githubusercontent.com/Communaute-Events/paths/main/paths.json")
         const data = await res.json()
-        const ws = await awaitWebsocket(data.websocket)
-		websocket = ws
+        await awaitWebsocket(data.websocket).then(sock => {
+			websocket = sock
+			isReconnecting = false
+		}).catch(err => {
+			wsError(err)
+			return
+		})
 
-        ws.onmessage = (msg) => {
+        websocket.onmessage = (msg) => {
             dispatch("message", msg.data)
         }
 
-		ws.onclose = (e) => {
+		websocket.onclose = (e) => {
 			wsError(e.reason)
 		}
 
-		ws.onerror = (error) => {
+		websocket.onerror = (error) => {
 			wsError(error)
 		}
-        return ws
     }
 
+	// Main
     onMount(()=>{
         websocketPromise = getWebsocket()
     })

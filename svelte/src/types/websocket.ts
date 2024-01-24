@@ -1,5 +1,12 @@
+export enum EventMessageType {
+    Status = "status",
+    Event = "event",
+    Map = "map"
+}
+
+// Auto-generated
 export interface WebsocketMessage {
-    _type:       string;
+    _type:       EventMessageType;
     eventSource: EventSource;
     message:     Message;
     author:      Author;
