@@ -1,5 +1,5 @@
-import { events, app, window } from "@neutralinojs/lib";
+import { events, app } from "@neutralinojs/lib";
 
 events.on("windowClose", ()=>{
-    app.exit(1)
+    app.exit(0)
 })

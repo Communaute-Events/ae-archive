@@ -1,5 +1,5 @@
 import hotkeys from "hotkeys-js";
-import { app, window } from "@neutralinojs/lib";
+import { app } from "@neutralinojs/lib";
 
 hotkeys("ctrl+c,cmd+c", (e)=>{
     e.preventDefault()
@@ -24,7 +24,7 @@ hotkeys("ctrl+z,cmd+z", (e)=>{
 
 hotkeys("cmd+q,cmd+w", (e)=>{
     e.preventDefault()
-    app.exit(1)
+    app.exit(0)
 })
 
 hotkeys("ctrl+a,cmd+a", (e)=>{

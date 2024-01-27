@@ -11,7 +11,7 @@ interface TrayMenuItem {
 let tray: TrayMenuItem[] = [];
 
 const mode = import.meta.env.MODE === 'development' ? 'dev' : 'prod'
-console.log(mode)
+console.log("Environment: " + mode)
 
 export async function updateTray(updatedItems: TrayMenuItem[]) {
 
@@ -63,7 +63,7 @@ export async function removeTray(trayIds: string[]) {
                 }])
                 break;
             case "quit":
-                app.exit(1)
+                app.exit(0)
         }
     })
 })();
