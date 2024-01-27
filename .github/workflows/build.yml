@@ -39,6 +39,9 @@ jobs:
         for dir in */; do
           zip -r "${dir%/}.zip" "$dir"
         done
+    
+    - name: List artifacts
+      run: ls dist | grep .zip
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
