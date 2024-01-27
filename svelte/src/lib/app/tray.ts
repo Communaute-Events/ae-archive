@@ -1,5 +1,5 @@
-import { os, events, window } from "@neutralinojs/lib";
-import { terminal } from 'virtual:terminal'
+import { os, events, window as w, app } from "@neutralinojs/lib";
+import terminal from "virtual:terminal";
 
 interface TrayMenuItem {
     id?: string;
@@ -9,6 +9,9 @@ interface TrayMenuItem {
 }
 
 let tray: TrayMenuItem[] = [];
+
+const mode = import.meta.env.MODE === 'development' ? 'dev' : 'prod'
+console.log(mode)
 
 export async function updateTray(updatedItems: TrayMenuItem[]) {
 
@@ -28,8 +31,8 @@ export async function updateTray(updatedItems: TrayMenuItem[]) {
     });
 
     tray = updatedTray
-    await os.setTray({ icon: "/svelte/public/tray.png", menuItems: tray as os.TrayMenuItem[] })
-    terminal.log(tray)
+
+    await os.setTray({ icon: mode === 'dev' ? '/svelte/public/tray.png' : '/svelte/dist/tray.png', menuItems: tray as os.TrayMenuItem[] })
 }
 
 export async function removeTray(trayIds: string[]) {
@@ -37,22 +40,30 @@ export async function removeTray(trayIds: string[]) {
 }
 
 (async () => {
+    if (window.NL_MODE != "window") {
+        console.log("INFO: Tray menu is only available in the window mode.");
+        return;
+    }
     await updateTray([
-        { id: "windowState", isChecked: await window.isVisible(), text: "Afficher la fenêtre" }
+        { id: "windowState", isChecked: await w.isVisible(), text: "Afficher la fenêtre" },
+        { id: "quit", text: "Quitter" }
     ])
 
     events.on("trayMenuItemClicked", async (e) => {
         switch (e.detail.id) {
             case "windowState":
-                if (await window.isVisible()) {
-                    window.hide()
+                if (await w.isVisible()) {
+                    w.hide()
                 } else {
-                    window.show()
+                    w.show()
                 }
                 updateTray([{
                     id: "windowState",
-                    isChecked: await window.isVisible()
+                    isChecked: await w.isVisible()
                 }])
+                break;
+            case "quit":
+                app.exit(1)
         }
     })
 })();
