@@ -106,6 +106,7 @@ for APP_ARCH in "${APP_ARCH_LIST[@]}"; do
     echo "  Copying content:"
     echo "    - Binary File"
     cp "${EXE}" "${APP_MACOS}/main"
+    chmod +x "${APP_MACOS}/main"
     echo "    - Resources"
     cp "${RES}" "${APP_RESOURCES}/"
 

@@ -25,12 +25,15 @@ fi
 # Check the provided argument
 case $1 in
   mac)
+    ./building/patch.sh
     ./building/build-mac.sh
     ;;
   linux)
+    ./building/patch.sh
     ./building/build-linux.sh
     ;;
   win)
+    ./building/patch.sh
     ./building/build-win.sh
     ;;
   *)
