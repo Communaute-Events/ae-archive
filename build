@@ -2,11 +2,12 @@
 
 # Function to display help message
 show_help() {
-  echo "Usage: $0 [mac|linux|win]"
+  echo "Usage: $0 [mac|linux|win|all]"
   echo "Execute the script based on the provided argument."
   echo "  mac   Build app for Mac"
   echo "  linux Build app for linux"
   echo "  win   Build app for windows"
+  echo "  all   Build app for all platforms"
 }
 
 # Check if no arguments are provided
@@ -35,6 +36,12 @@ case $1 in
   win)
     ./building/patch.sh
     ./building/build-win.sh
+    ;;
+  all)
+    ./building/patch.sh
+    ./building/build-mac.sh
+    ./building/build-win.sh
+    ./building/build-linux.sh
     ;;
   *)
     echo "Error: Invalid argument. Please use 'mac', 'linux', or 'win'."

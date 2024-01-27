@@ -40,7 +40,7 @@
   },
   "buildScript": {
     "mac": {
-      "architecture": ["x64", "arm64", "universal"],
+      "architecture": ["universal"],
       "minimumOS": "10.13.0",
       "appName": "AutoEvent",
       "appBundleName": "AutoEvent",
