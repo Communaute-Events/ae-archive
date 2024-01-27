@@ -78,7 +78,7 @@ if [ "$1" != "--test" ]; then
     echo -e "\033[1mBuilding Neutralino Apps ...\033[0m"
     echo
     rm -rf "./dist/${APP_BINARY}"
-    neu build
+    npx neu build
     echo -e "\033[1mDone.\033[0m"
 else
     echo

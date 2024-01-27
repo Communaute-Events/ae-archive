@@ -16,10 +16,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 20
 
     - name: Install Dependencies
-      run: npm install  # Adjust this based on your project's dependencies
+      run: npm ci  # Adjust this based on your project's dependencies
 
     - name: Build for Mac
       run: ./build mac
@@ -29,9 +29,6 @@ jobs:
 
     - name: Build for Windows
       run: ./build win
-
-    - name: Build for All Platforms
-      run: ./build all
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v2
