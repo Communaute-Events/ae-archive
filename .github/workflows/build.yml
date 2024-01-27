@@ -33,14 +33,15 @@ jobs:
     - name: Build for Windows
       run: ./build win
 
-    - name: List artifacts
-      run: ls dist
-      
-    - name: Archive Artifacts
+    - name: Zip artifacts
+      run: |
+        cd dist
+        for dir in */; do
+          zip -r "${dir%/}.zip" "$dir"
+        done
+
+    - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: builds
-        path: |
-          dist/mac_*
-          dist/linux_*
-          dist/win_*
+        name: distributable-artifacts
+        path: dist/*.zip
