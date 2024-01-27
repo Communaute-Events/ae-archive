@@ -23,6 +23,7 @@
   "dependencies": {
     "@neutralinojs/lib": "^3.13.0",
     "@rwh/keystrokes": "^1.5.4",
+    "@types/pug": "^2.0.10",
     "hotkeys-js": "^3.13.5"
   }
 }
