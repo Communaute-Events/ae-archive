@@ -39,3 +39,7 @@ Run the build script for your target OS
 # Windows
 ./build win
 ```
+
+## Beta Builds
+
+To download the buit-on-commit builds (nightly), go to this link: https://nightly.link/Communaute-Events/AutoEvent/workflows/build/main?preview
