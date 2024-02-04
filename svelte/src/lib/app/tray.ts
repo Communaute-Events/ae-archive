@@ -1,5 +1,6 @@
-import { os, events, window as w, app } from "@neutralinojs/lib";
-import terminal from "virtual:terminal";
+import { os, events, window as w, app, storage } from "@neutralinojs/lib";
+import { getMode } from "../modules/env";
+import { autoStart } from "../modules/launch";
 
 interface TrayMenuItem {
     id?: string;
@@ -10,7 +11,7 @@ interface TrayMenuItem {
 
 let tray: TrayMenuItem[] = [];
 
-const mode = import.meta.env.MODE === 'development' ? 'dev' : 'prod'
+const mode = getMode()
 console.log("Environment: " + mode)
 
 export async function updateTray(updatedItems: TrayMenuItem[]) {
@@ -44,8 +45,12 @@ export async function removeTray(trayIds: string[]) {
         console.log("INFO: Tray menu is only available in the window mode.");
         return;
     }
+
+    let autoStarting = await storage.getData("autoStart").catch(console.error) === "true";
+
     await updateTray([
         { id: "windowState", isChecked: await w.isVisible(), text: "Afficher la fenêtre" },
+        { id: "autoStart", isChecked: autoStarting, text: "Lancer dès l'ouverture de session" },
         { id: "quit", text: "Quitter" }
     ])
 
@@ -60,6 +65,15 @@ export async function removeTray(trayIds: string[]) {
                 updateTray([{
                     id: "windowState",
                     isChecked: await w.isVisible()
+                }])
+                break;
+            case "autoStart":
+                autoStart(!autoStarting)
+                autoStarting = !autoStarting
+                storage.setData("autoStart",String(autoStarting))
+                updateTray([{
+                    id: "autoStart",
+                    isChecked: autoStarting
                 }])
                 break;
             case "quit":
