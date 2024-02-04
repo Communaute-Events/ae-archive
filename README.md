@@ -8,7 +8,7 @@
 
 AutoEvent is a lightweight and blazing fast event launcher built with [Neutralino](https://neutralino.js.org) and [Svelte](https://svelte.dev). It is currently in construction.
 
-## Features
+## Features
 
 AutoEvent can notify you of upcoming events, while consumming close to no ram while running in the background. Clicking the alert will directly take you the the launch steps.
 
