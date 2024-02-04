@@ -19,6 +19,12 @@ export async function showNotification(options: NotificationOptions) {
             case "Darwin":
                 await darwin(options);
                 break;
+            case "Windows":
+                // etc...
+                break;
+            case "Linux":
+                // etc..
+                break;
             default:
                 await os.showNotification(options.title,options.content,(options.type || os.Icon.INFO))
                 break;
