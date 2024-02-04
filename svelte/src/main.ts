@@ -6,15 +6,18 @@ import { install, getUrlData } from './lib/modules/url'
 import terminal from 'virtual:terminal'
 
 init()
-events.on("ready",()=>{
+events.on("ready", async () => {
   console.log("Neutralino is ready!")
-  install().then(()=>{
-    getUrlData().then(data => {
-      if (data) {
-        window.DATA = data
-      }
-    }).catch(console.error)
+  // URl Scheme
+  await install().catch(console.error)
+  await getUrlData().then(data => {
+    if (data) {
+      window.DATA = data
+    }
   }).catch(console.error)
+
+  // Automatic Launches
+
 })
 
 const app = new App({

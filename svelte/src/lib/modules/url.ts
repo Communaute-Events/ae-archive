@@ -1,7 +1,4 @@
 import { filesystem, os } from "@neutralinojs/lib"
-import terminal from "virtual:terminal"
-
-// console = terminal
 
 export async function install() {
     switch (window.NL_OS) {
@@ -51,7 +48,7 @@ async function darwin() {
             await os.execCommand(`curl "https://raw.githubusercontent.com/Communaute-Events/artifacts/main/autoevent/macos/url-handler.app.zip" > ${encodePath(appSupportPath)}/url-handler.app.zip`)
             await os.execCommand(`unzip -d ${encodePath(appSupportPath)} ${encodePath(appSupportPath)}/url-handler.app.zip`)
             await os.execCommand(`${encodePath(appSupportPath)}/url-handler.app/Contents/MacOS/applet`)
-            await filesystem.removeFile(appSupportPath + "/url-handler.app.zip")
+            await filesystem.remove(appSupportPath + "/url-handler.app.zip")
         } catch (err) {
             console.error(err)
         }
