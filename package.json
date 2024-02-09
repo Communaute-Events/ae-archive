@@ -1,20 +1,20 @@
 {
   "name": "neutralino-svelte",
   "version": "1.0.0",
-  "description": "A NeutralinoJS template which includes svelte",
+  "author": "OrigamingWasTaken",
   "main": "dist/index.js",
-  "scripts": {
-    "svelte:build": "cd svelte && npm run build"
+  "devDependencies": {
+    "@neutralinojs/neu": "^10.1.0",
+    "vite-plugin-terminal": "^1.2.0"
   },
+  "description": "A NeutralinoJS template which includes svelte",
   "keywords": [
     "neutralino",
     "webdev",
     "ts"
   ],
-  "author": "OrigamingWasTaken",
   "license": "ISC",
-  "devDependencies": {
-    "@neutralinojs/neu": "^10.1.0",
-    "vite-plugin-terminal": "^1.2.0"
+  "scripts": {
+    "svelte:build": "cd svelte && npm run build"
   }
 }

@@ -1,3 +1,7 @@
 {
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "css.customData": [
+        ".vscode/tailwind.json"
+    ],
+    "css.lint.unknownAtRules": "ignore"
 }
