@@ -1,8 +1,8 @@
-import './app.css'
-import "./lib/app/"
+import "../../app.pcss"
+import "../../lib/app"
 import App from './App.svelte'
 import { init, events, os } from '@neutralinojs/lib'
-import { install, getUrlData } from './lib/modules/url'
+import { install, getUrlData } from '../../lib/modules/url'
 import terminal from 'virtual:terminal'
 
 init()
@@ -15,8 +15,6 @@ events.on("ready", async () => {
       window.DATA = data
     }
   }).catch(console.error)
-
-  // Automatic Launches
 
 })
 

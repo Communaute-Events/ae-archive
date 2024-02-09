@@ -15,9 +15,9 @@
   ],
   "modes": {
     "window": {
-      "title": "AutoEvent",
-      "width": 800,
-      "height": 500,
+      "title": "AutoEvent", 
+      "width": 1200,
+      "height": 800,
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/svelte/public/favicon.png",
