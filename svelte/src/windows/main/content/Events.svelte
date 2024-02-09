@@ -42,7 +42,7 @@
 </script>
 
 <main class="m-10">
-	<h1 class="title">AutoEvent</h1>
+	<h1 class="title ">AutoEvent</h1>
 	<Button class="window-state-bt" on:click={w.hide}>Cacher la fenêtre</Button>
 	<Button on:click={notifClick}>Test notifications</Button>
 	<WebSocketComponent
