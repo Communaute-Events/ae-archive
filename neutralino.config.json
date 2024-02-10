@@ -11,7 +11,8 @@
     "os.*",
     "window.*",
     "filesystem.*",
-    "storage.*"
+    "storage.*",
+    "clipboard.*"
   ],
   "modes": {
     "window": {

@@ -1,10 +1,9 @@
 <script lang="ts">
     import * as Select from "$lib/components/ui/select"
     import { createEventDispatcher } from "svelte";
-    import terminal from "virtual:terminal"
 
     export let items: {label: string, value: string, icon?: string }[] = []
-    export let height = 0;
+    export let rem = 0;
     export let placeholder = "Select..."
 
     const dispatch = createEventDispatcher<{selected: string}>()
@@ -12,16 +11,13 @@
     function handleClick(value: string) {
         dispatch("selected",value)
     }
-
-    const contentStyle = "overflow-y-auto" + (height !== 0 ? " h-" + height : "")
-
 </script>
 
 <Select.Root>
     <Select.Trigger id="launcher" class="w-[275px]">
         <Select.Value placeholder={placeholder} />
     </Select.Trigger>
-    <Select.Content class={contentStyle}>
+    <Select.Content style={rem !== 0 ? `overflow-y: auto; height: ${rem}rem;` : 'overflow-y: auto;'}>
         {#each items as item}
             <Select.Item value={item.value} label={item.label} on:click={()=>{handleClick(item.value)}} class="cursor-pointer">
                 <div class="flex items-center">

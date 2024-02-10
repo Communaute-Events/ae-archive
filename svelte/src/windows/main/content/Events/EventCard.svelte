@@ -1,39 +1,40 @@
 <script lang="ts">
-import * as Card from "$lib/components/ui/card"
+	import * as Card from "$lib/components/ui/card"
 
-import {Button} from "$lib/components/ui/button"
-import * as Dialog from "$lib/components/ui/dialog"
-import {Label} from "$lib/components/ui/label"
+	import {Button} from "$lib/components/ui/button"
+	import * as Dialog from "$lib/components/ui/dialog"
+	import {Label} from "$lib/components/ui/label"
+	import * as AlertDialog from "../../../../lib/components/ui/alert-dialog";
 
-import PrismLauncher from "../../../../assets/prismlauncher.png"
-import MinecraftLauncher from "../../../../assets/minecraftlauncher.png"
-import Forge from "../../../../assets/forge.jpg"
-import NeoForge from "../../../../assets/neoforge.png"
-import Fabric from "../../../../assets/fabricmc.png"
+	import PrismLauncher from "../../../../assets/prismlauncher.png"
+	import MinecraftLauncher from "../../../../assets/minecraftlauncher.png"
+	import Forge from "../../../../assets/forge.jpg"
+	import NeoForge from "../../../../assets/neoforge.png"
+	import Fabric from "../../../../assets/fabricmc.png"
 
-import EventCardSelect from "./EventCardSelect.svelte"
-import {versions} from "$lib/minecraft/data"
+	import EventCardSelect from "./EventCardSelect.svelte"
+	import {versions} from "$lib/minecraft/data"
 
-export let name: string
-export let description: string
-export let icon: string
+	export let name: string
+	export let description: string
+	export let icon: string
 
-let choosenLauncher: string | undefined
-let choosenVersion: string | undefined
-let choosenModLoader: string | undefined
+	let choosenLauncher: string | undefined
+	let choosenVersion: string | undefined
+	let choosenModLoader: string | undefined
 
-function handleClick() {}
+	function handleClick() {}
 
-const launchers: {label: string; value: string; icon: string}[] = [
-	{label: "PrismLauncher", value: "prism", icon: PrismLauncher},
-	{label: "Minecraft Launcher", value: "minecraft", icon: MinecraftLauncher},
-]
+	const launchers: {label: string; value: string; icon: string}[] = [
+		{label: "PrismLauncher", value: "prism", icon: PrismLauncher},
+		{label: "Minecraft Launcher", value: "minecraft", icon: MinecraftLauncher},
+	]
 
-const modloaders: {label: string; value: string; icon: string}[] = [
-	{label: "Fabric", value: "fabric", icon: Fabric},
-	{label: "NeoForge", value: "neoforge", icon: NeoForge},
-	{label: "Forge", value: "forge", icon: Forge},
-]
+	const modloaders: {label: string; value: string; icon: string}[] = [
+		{label: "Fabric", value: "fabric", icon: Fabric},
+		{label: "NeoForge", value: "neoforge", icon: NeoForge},
+		{label: "Forge", value: "forge", icon: Forge},
+	]
 </script>
 
 <main>
@@ -84,7 +85,7 @@ const modloaders: {label: string; value: string; icon: string}[] = [
 							choosenVersion = v.detail
 						}}
 						placeholder="Sélectionnez une version"
-						height={64}
+						rem={16}
 						items={versions.map((v) => ({label: v, value: v}))}
 					/>
 				</div>
@@ -101,9 +102,25 @@ const modloaders: {label: string; value: string; icon: string}[] = [
 			</div>
 			<Dialog.Footer>
 				{#if choosenLauncher && choosenModLoader && choosenVersion}
-					<Dialog.Close>
-						<Button type="submit">Save changes</Button>
-					</Dialog.Close>
+						<AlertDialog.Root>
+							<AlertDialog.Trigger asChild let:builder>
+							  <Button builders={[builder]} variant="outline">Show Dialog</Button>
+							</AlertDialog.Trigger>
+							<AlertDialog.Content>
+							  <AlertDialog.Header>
+								<AlertDialog.Title>Êtes-vous sûr?</AlertDialog.Title>
+								<AlertDialog.Description>
+									Vous allez lancer votre jeu avec <strong>{modloaders.find(ml => ml.value === choosenModLoader)?.label}</strong> en <strong>{choosenVersion}</strong>.
+								</AlertDialog.Description>
+							  </AlertDialog.Header>
+							  <AlertDialog.Footer>
+								<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+								<Dialog.Close>
+									<AlertDialog.Action>Continue</AlertDialog.Action>
+								</Dialog.Close>
+							  </AlertDialog.Footer>
+							</AlertDialog.Content>
+						  </AlertDialog.Root>
 				{:else}
 					<Button disabled type="submit">Save changes</Button>
 				{/if}
