@@ -1,10 +1,10 @@
 <script lang="ts">
-    export let items: { label: string; icon?: string }[] = [];
+    export let items: { label: string; icon?: string, id: string }[] = [];
+    export let page: string = "events";
   
     // Function to handle item click
-    function onItemClick(item: { label: string; icon?: string }) {
-      console.log(`Clicked on ${item.label}`);
-      // Add your logic here for handling item clicks
+    function onItemClick(item: { label: string; icon?: string, id: string }) {
+      page = item.id
     }
   </script>
   
@@ -28,10 +28,10 @@
   </style>
   
   <div class="sidebar">
-    {#each items as { label, icon }, index (label)}
-      <button class="item" on:click={() => onItemClick({ label, icon })}>
+    {#each items as { label, icon, id }, index (label)}
+      <button class="item px-5 rounded-md w-full" on:click={() => onItemClick({ label, icon, id })}>
         <div class="icon">{#if icon}{icon}{/if}</div>
-        <div>{label}</div>
+        <div class="text-left">{label}</div>
       </button>
     {/each}
   </div>

@@ -1,21 +1,36 @@
 <script lang="ts">
 	import Sidebar from "./Sidebar.svelte"
+	import Dev from "./content/Dev.svelte"
 	import Events from "./content/Events.svelte"
+	import Settings from "./content/Settings.svelte"
+	import { fly } from "svelte/transition";
 
-	export let currentPage: string = "events";
+	let page: string = "events";
 </script>
 
 <main>
 	<div class="flex">
 		<Sidebar
+			bind:page
 			items={[
-				{label: "Evenements", icon: "✨"},
-				{label: "Paramètres", icon: "⚙️"},
+				{label: "Evenéments", id: "events", icon: "✨"},
+				{label: "Paramètres", id: "settings", icon: "⚙️"},
+				{label: "Dev Panel", id: "dev", icon: "🤖"},
 			]}
 		/>
-		<div class="content">
-			{#if currentPage === "events"}
+		<div class="content flex-grow">
+			{#if page === "events"}
+			<div in:fly={{y: -2000, duration: 1000}} out:fly={{y: 200, duration: 300}}>
 				<Events/>
+			</div>
+			{:else if page === "settings"}
+			<div in:fly={{y: -2000, duration: 1000}} out:fly={{y: 200, duration: 300}}>
+				<Settings/>
+			</div>
+			{:else if page === "dev"}
+			<div in:fly={{y: -2000, duration: 1000}} out:fly={{y: 200, duration: 300}}>
+				<Dev/>
+			</div>
 			{/if}
 		</div>
 	</div>
