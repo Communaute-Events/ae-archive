@@ -21,17 +21,8 @@ jobs:
     - name: Install Dependencies
       run: npm ci  # Adjust this based on your project's dependencies
 
-    - name: Install Frontend Dependencies
-      run: cd svelte && npm ci  # Adjust this based on your project's dependencies
-
-    - name: Build for Mac
-      run: ./build mac
-
-    - name: Build for Linux
-      run: ./build linux
-
-    - name: Build for Windows
-      run: ./build win
+    - name: Build and Package
+      run: npm run build
 
     - name: Zip artifacts
       run: |
@@ -39,9 +30,6 @@ jobs:
         for dir in */; do
           zip -r "${dir%/}.zip" "$dir"
         done
-    
-    - name: List artifacts
-      run: ls dist | grep .zip
 
     - name: Upload (linux_arm64)
       uses: actions/upload-artifact@v4
