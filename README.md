@@ -19,6 +19,22 @@ AutoEvent can notify you of upcoming events, while consumming close to no ram wh
   <figcaption>Image of what the notifications look like</figcaption>
 </figure>
 
+## Building
+
+To contribute, or build the projet from source, clone the repo and use the build scripts:
+
+```bash
+git clone https://github.com/Communaute-Events/AutoEvent.git
+cd AutoEvent
+npm install
+```
+
+And then run `npm run build` to build, and `npm run dev` to start a dev server (with hot reloading).
+
+## Contributing
+
+Feel free to submit PRs. If you want to get involved, join us at https://commu.events/discod
+
 ## Roadmap
 
 Currently, a lot of features aren't present on certain platforms (ex: notifications and app focus don't work on linux and windows). This is due to the fact that the main dev (OrigamingWasTaken) is on MacOS, and can't develop for other OSes. So you are very welcome to help us implement the missing features!
@@ -30,56 +46,22 @@ Currently, a lot of features aren't present on certain platforms (ex: notificati
 - [x] Alerts
 - [x] Window functions
 - [x] Autostarting
-- [x] URL Scheme
+- [x] URL Scheme (autoevent://)
 
 **Windows**
 - [ ] Notifications
 - [ ] Alerts
 - [ ] Window functions
 - [ ] Autostarting
-- [ ] URL Scheme
+- [ ] URL Scheme (autoevent://)
 
 **Linux**
 - [ ] Notifications
 - [ ] Alerts
 - [ ] Window functions
 - [ ] Autostarting
-- [ ] URL Scheme
+- [ ] URL Scheme (autoevent://)
 
 ## Nightly Builds
 
 You can download the app from the [nightly builds](https://nightly.link/Communaute-Events/AutoEvent/workflows/build/main?preview)
-
-## Building
-
-(Note: If you're on Windows, you must install WSL)
-
-Install Jq
-```shell
-# On macOS:
-brew install jq
-# On Linux or Windows/WSL:
-sudo apt-get install jq
-```
-
-Clone the repo
-```shell
-git clone https://github.com/Communaute-Events/AutoEvent.git
-```
-
-Install the neu-cli
-```shell
-npm install -g @neutralinojs/neu
-```
-
-Run the build script for your target OS
-```shell
-# MacOS
-./build mac
-# Linux
-./build linux
-# Windows
-./build win
-# All platforms
-./build all
-```

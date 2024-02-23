@@ -1,66 +1,51 @@
 {
-  "applicationId": "ts.neutralino.svelte",
+  "applicationId": "events.commu.autoevents",
   "version": "1.0.0",
   "defaultMode": "window",
-  "documentRoot": "/svelte/dist",
+  "documentRoot": "/frontend/dist",
   "url": "/",
   "enableServer": true,
   "enableNativeAPI": true,
+  "exportAuthInfo": false,
+  "logging": {
+    "writeToLogFile": false,
+    "enabled": true
+  },
   "nativeAllowList": [
     "app.*",
     "os.*",
     "window.*",
     "filesystem.*",
     "storage.*",
-    "clipboard.*"
+    "clipboard.*",
+    "debug.*"
   ],
   "modes": {
     "window": {
-      "title": "AutoEvent", 
+      "title": "AutoEvent",
       "width": 1200,
       "height": 800,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/svelte/public/favicon.png",
-      "enableInspector": true,
-      "hidden": false
+      "icon": "/frontend/public/favicon.png",
+      "hidden": false,
+      "exitProcessOnClose": false,
+      "useSavedState": false
     }
   },
   "cli": {
     "binaryName": "AutoEvent",
-    "resourcesPath": "/svelte/dist",
+    "resourcesPath": "/frontend/dist",
     "extensionsPath": "/extensions/",
     "binaryVersion": "4.14.1",
     "clientVersion": "3.12.0",
     "frontendLibrary": {
-      "patchFile": "/svelte/index.html",
+      "buildCommand": "npm run neu:checkup",
+      "patchFile": "scripts/package/dummy.html",
       "devUrl": "http://localhost:5173",
-      "projectPath": "/svelte/",
-      "initCommand": "npm install",
-      "devCommand": "BROWSER=none npm run dev",
-      "buildCommand": "npm run build"
-    }
-  },
-  "buildScript": {
-    "mac": {
-      "architecture": ["universal"],
-      "minimumOS": "10.13.0",
-      "appName": "AutoEvent",
-      "appBundleName": "AutoEvent",
-      "appIdentifier": "events.commu.autoevents",
-      "appIcon":  "icon.icns"
-    },
-    "win": {
-      "architecture": ["x64"],
-      "appName": "AutoEvent",
-      "appIcon": "icon.ico"
-    },
-    "linux": {
-      "architecture": ["x64", "arm64", "armhf"],
-      "appName": "AutoEvent",
-      "appIcon": "building/icon.png",
-      "appPath":  "/usr/share/AutoEvent",
-      "appIconPath": "/usr/share/AutoEvent/icon.png"
+      "devCommand": "npm run neu:checkup",
+      "projectPath": "/",
+      "initCommand": "npm install"
     }
   }
 }

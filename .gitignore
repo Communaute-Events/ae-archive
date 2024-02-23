@@ -1,7 +1,7 @@
 /bun.lockb
 .tmp
+.tmpbuild
 window_state_config.json
-.storage
 
 # Created by https://www.toptal.com/developers/gitignore/api/svelte,node,macos,windows,linux,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=svelte,node,macos,windows,linux,git
@@ -214,7 +214,6 @@ dist
 # website: https://kit.svelte.dev/
 
 .svelte-kit/
-package
 
 ### Windows ###
 # Windows thumbnail cache files

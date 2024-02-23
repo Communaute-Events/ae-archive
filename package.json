@@ -1,20 +1,66 @@
 {
-  "name": "neutralino-svelte",
-  "version": "1.0.0",
-  "author": "OrigamingWasTaken",
-  "main": "dist/index.js",
-  "devDependencies": {
-    "@neutralinojs/neu": "^10.1.0",
-    "vite-plugin-terminal": "^1.2.0"
-  },
-  "description": "A NeutralinoJS template which includes svelte",
-  "keywords": [
-    "neutralino",
-    "webdev",
-    "ts"
-  ],
-  "license": "ISC",
-  "scripts": {
-    "svelte:build": "cd svelte && npm run build"
-  }
+	"name": "neutralino-svelte",
+	"version": "1.1.0",
+	"description": "A NeutralinoJS template which uses svelte and vite",
+	"main": "frontend/src/windows/main/main.ts",
+	"scripts": {
+		"vite:dev": "vite",
+		"dev": "vite-node scripts/package/dev.ts",
+		"build": "vite-node scripts/build/ts/index.ts",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"neu:checkup": ""
+	},
+	"keywords": [
+		"svelte",
+		"neutralino",
+		"webdev",
+		"ts"
+	],
+	"type": "module",
+	"author": "OrigamingWasTaken",
+	"license": "MIT",
+	"devDependencies": {
+		"@neutralinojs/neu": "^10.1.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@tsconfig/svelte": "^5.0.2",
+		"@types/path-browserify": "^1.0.2",
+		"@types/signale": "^1.4.7",
+		"@types/tar": "^6.1.11",
+		"autoprefixer": "^10.4.16",
+		"await-exec-typescript": "github:artemhp/await-exec-typescript",
+		"filedrop-svelte": "^0.1.2",
+		"jszip": "^3.10.1",
+		"postcss": "^8.4.32",
+		"postcss-load-config": "^5.0.2",
+		"prettier": "^3.2.5",
+		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.5.9",
+		"resedit": "^2.0.0",
+		"signale": "^1.4.0",
+		"svelte": "^4.2.11",
+		"svelte-check": "^3.6.4",
+		"tailwindcss": "^3.3.6",
+		"tar": "^6.2.0",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3",
+		"vite": "^5.1.3",
+		"vite-node": "^1.3.1",
+		"vite-plugin-html": "^3.2.2"
+	},
+	"dependencies": {
+		"@expo/spawn-async": "^1.7.2",
+		"@melt-ui/pp": "^0.3.0",
+		"@neutralinojs/lib": "^5.0.0",
+		"attr-accept": "^2.2.2",
+		"autoprefixer": "^10.4.17",
+		"bits-ui": "^0.17.0",
+		"clsx": "^2.1.0",
+		"hotkeys-js": "^3.13.5",
+		"lucide-svelte": "^0.323.0",
+		"mode-watcher": "^0.2.1",
+		"path-browserify": "^1.0.1",
+		"svelte-sonner": "^0.3.17",
+		"tailwind-merge": "^2.2.1",
+		"tailwind-variants": "^0.1.20"
+	}
 }
