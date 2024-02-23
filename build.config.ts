@@ -4,10 +4,10 @@ import { resolve as path } from "path"
 const BuildConfig: Config = {
     projectPath: path("./frontend/dist"),
     outDir: path("./dist"),
-    appName: "Svelte Neutralino",
-    description: "An app made with Vite, Svelte and NeutralinoJS",
-    appBundleName: "SvelteNeutralino",
-    appIdentifier: "ts.svelte.neutralino",
+    appName: "AutoEvent",
+    description: "Un launcher d'évents ultra light et rapide",
+    appBundleName: "AutoEvent",
+    appIdentifier: "commu.events.autoevent",
     mac: {
         architecture: ["universal","arm64","x64"],
         appIcon: path("./build/assets/mac.icns"),
@@ -22,8 +22,7 @@ const BuildConfig: Config = {
     linux: {
         architecture: ["x64","arm64","armhf"],
         appIcon: path("./build/assets/linux.png"),
-        appPath: "/usr/share/SvelteNeutralino",
-        appIconPath:  "/usr/share/SvelteNeutralino/icon.png"
+        appPath: "/usr/share/AutoEvent",
     }
 }
 

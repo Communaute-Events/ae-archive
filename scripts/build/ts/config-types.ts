@@ -22,6 +22,5 @@ export interface Config {
 		architecture: LinuxArch[];
 		appIcon: string;
 		appPath: string;
-		appIconPath: string;
 	};
 }
