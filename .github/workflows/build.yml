@@ -24,15 +24,8 @@ jobs:
       - name: Build and Package
         run: npm run build
 
-      - name: Zip artifacts
-        run: |
-          cd dist
-          for dir in */; do
-            zip -r "${dir%/}.zip" "$dir"
-          done
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: AutoEvent-artifacts
-          path: dist/*
+          path: dist
