@@ -31,38 +31,8 @@ jobs:
             zip -r "${dir%/}.zip" "$dir"
           done
 
-      - name: Upload (linux_arm64)
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: AutoEvent-linux_arm64
-          path: dist/linux_arm64.zip
-      - name: Upload (linux_armhf)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent-linux_armhf
-          path: dist/linux_armhf.zip
-      - name: Upload (linux_x64)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent-linux_x64
-          path: dist/linux_x64.zip
-      - name: Upload (mac_universal)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent-mac_universal
-          path: dist/mac_universal.zip
-      - name: Upload (mac_arm64)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent-mac_arm64
-          path: dist/mac_arm64.zip
-      - name: Upload (mac_x64)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent-mac_x64
-          path: dist/mac_x64.zip
-      - name: Upload (win_x64)
-        uses: actions/upload-artifact@v4
-        with:
-          name: AutoEvent_win_x64
-          path: dist/win_x64.zip
+          name: AutoEvent-artifacts
+          path: dist/*
