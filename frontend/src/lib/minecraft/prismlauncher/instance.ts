@@ -2,6 +2,7 @@ import type { MinecraftVersion } from '../data';
 import { getForgeData } from '../modloaders/forge';
 import { getFabricData } from '../modloaders/fabric';
 import { debug } from '@neutralinojs/lib';
+import { getNeoforgeData } from '../modloaders/neoforge';
 
 export interface InstanceBuilderConfig {
 	modloader: {
@@ -58,27 +59,54 @@ export class InstanceBuilder {
 			this.config.modloader.version = stableVersions.reduce((max, current) =>
 				current.loader.build > max.loader.build ? current : max,
 			).loader.version;
-			// `https://maven.fabricmc.net/net/fabricmc/fabric-loader/${latestStableVersion.loader.version}/fabric-loader-${latestStableVersion.loader.version}.jar`;
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
-    public async setNeoforgeVersion(): Promise<void> {
-        if (this.config.modloader.version) return;
-        // Will include later once NeoForge creates their Meta API
-    }
+	public async setNeoforgeVersion(): Promise<void> {
+		if (this.config.modloader.version) return;
+		try {
+			const versions = await getNeoforgeData(this.config.version, true);
+			const highestVersion = versions.reduce(
+				(highest, current) =>
+					highest.localeCompare(current, undefined, { numeric: true, sensitivity: 'base' }) === -1 ? current : highest,
+				'',
+			);
+			if (!highestVersion) {
+				throw new Error("No NeoForge version found for '" + this.config.version + "'");
+			}
+			this.config.modloader.version = highestVersion;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	public async initialize(): Promise<void> {
-		switch (this.config.modloader.type) {
-			case 'forge':
-				await this.setForgeVersion();
-				break;
-			case 'fabric':
-				await this.setFabricVersion();
-				break;
-            case "vanilla":
-                this.config.modloader.version = this.config.version
+		try {
+			switch (this.config.modloader.type) {
+				case 'forge':
+					await this.setForgeVersion();
+					break;
+				case 'fabric':
+					await this.setFabricVersion();
+					break;
+				case 'neoforge':
+					await this.setNeoforgeVersion();
+					break;
+				case 'vanilla':
+					this.config.modloader.version = this.config.version;
+			}
+		} catch (err) {
+			throw new Error(err as string)
+		}
+	}
+
+	public async build(): Promise<void> {
+		try {
+			
+		} catch (err) {
+			throw new Error(err as string)
 		}
 	}
 }

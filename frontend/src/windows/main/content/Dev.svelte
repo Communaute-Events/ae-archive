@@ -32,13 +32,24 @@
 			icon: "/test/icon.png",
 			config: {
 				modloader: {
-					type: "fabric",
+					type: "forge",
 				},
-				version: "1.18.2"
+				version: "1.20.4"
 			}
 		})
 		await instance.initialize()
-		debug.log(String(instance))
+		debug.log(JSON.stringify(instance))
+	}
+
+	async function neoforge() {
+		const versions = await getNeoforgeData("1.20.2",true)
+		switch (versions.length > 0) {
+			case false:
+				debug.log("No versions found " + JSON.stringify(versions))
+				break;
+			case true:
+				debug.log(JSON.stringify(versions))
+		}
 	}
 
 </script>
@@ -51,5 +62,5 @@
 		<Button on:click={sendTestEvent}>Test Event</Button>
 	</div>
 	<Button on:click={instanceTest}>InstanceBuilder</Button>
-	<Button on:click={getNeoforgeData}>NeoForge</Button>
+	<Button on:click={neoforge}>NeoForge</Button>
 </main>

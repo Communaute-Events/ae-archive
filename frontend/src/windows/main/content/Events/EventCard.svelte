@@ -27,7 +27,7 @@
 
 	const modloaders: { label: string; value: string; icon: string; minVersion: string }[] = [
 		{ label: 'Fabric', value: 'fabric', icon: '/assets/fabricmc.png', minVersion: '1.14' },
-		{ label: 'NeoForge', value: 'neoforge', icon: '/assets/neoforge.png', minVersion: '1.20.1' },
+		{ label: 'NeoForge', value: 'neoforge', icon: '/assets/neoforge.png', minVersion: '1.20.2' },
 		{ label: 'Forge', value: 'forge', icon: '/assets/forge.jpg', minVersion: '1.7.2' },
 	];
 
@@ -42,7 +42,7 @@
 				if (!isVersionBelow(choosenVersion, '1.14')) break;
 				return false;
 			case 'neoforge':
-				if (!isVersionBelow(choosenVersion, '1.20.1')) break;
+				if (!isVersionBelow(choosenVersion, '1.20.2')) break;
 				return false;
 		}
 		return true;
@@ -99,13 +99,13 @@
 			toast.error('Une erreur est survenue lors du traitement de vos fichiers (FILEINFO_NOT_FOUND)');
 			return;
 		}
-		dropzoneMessage = fileInfo.file ? fileInfo.file.name : (fileInfo.path || "file_path_not_found");
+		dropzoneMessage = fileInfo.file ? fileInfo.file.name : fileInfo.path || 'file_path_not_found';
 
 		// TODO: Pass the filepath etc to the minecraft launch script
 	}
 </script>
 
-<main>
+<div class={$$props.class}>
 	<Dialog.Root>
 		<Dialog.Trigger
 			class="w-full"
@@ -118,7 +118,7 @@
 				dropzoneMessage = 'Selectionnez votre archive de mods';
 			}}
 			><Card.Root
-				class="duration-200 hover:shadow-lg hover:bg-emerald-950 hover:drop-shadow-xl hover:px-3 cursor-pointer w-full text-left">
+				class="w-full cursor-pointer text-left duration-200 hover:bg-emerald-950 hover:px-3 hover:shadow-lg hover:drop-shadow-xl">
 				<Card.Header class="flex flex-row">
 					<div>
 						<Card.Title>{name}</Card.Title>
@@ -208,4 +208,4 @@
 			</Dialog.Footer>
 		</Dialog.Content>
 	</Dialog.Root>
-</main>
+</div>

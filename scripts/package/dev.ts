@@ -1,6 +1,6 @@
-import spawn from '@expo/spawn-async';
+import spawn, { type SpawnPromise, type SpawnResult} from '@expo/spawn-async';
 import path from 'path';
-import { existsSync, chmodSync } from 'fs';
+import { existsSync, chmodSync, rmSync } from 'fs';
 
 async function main() {
 	// Clear terminal
@@ -25,6 +25,10 @@ async function main() {
 		detached: false,
 		stdio: 'inherit',
 	});
+	// Delay to be sure vite was built
+	console.log("Waiting 2500ms...")
+	await new Promise(r => setTimeout(r, 2500));
+
 	const args = [
 		'--window-enable-inspector=true',
 		'--export-auth-info',
@@ -32,10 +36,18 @@ async function main() {
 		`--path=${path.resolve('.')}`,
 		'--neu-dev-extension',
 		'--url=http://localhost:5173',
+		"--port=5174"
 	];
 	// Chmod +x the binary to be able to run it
-	chmodSync(path.resolve(`./bin/neutralino-${binaryOS}_${process.arch}`), '755');
-	await spawn(`./bin/neutralino-${binaryOS}_${process.arch}`, args, {
+	let bpath: string;
+	if (process.platform !== "win32") {
+		bpath = path.resolve(`./bin/neutralino-${binaryOS}_${process.arch}`)
+		chmodSync(bpath,"755");
+	} else {
+		bpath = path.resolve(`./bin/neutralino-${binaryOS}_winx64.exe`)
+	}
+	
+	await spawn(bpath, args, {
 		cwd: process.cwd(),
 		detached: false,
 		stdio: 'inherit',

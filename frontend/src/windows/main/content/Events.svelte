@@ -50,6 +50,7 @@
 						name={msg.eventSource.name}
 						description={msg.message.data.cleanContent.substring(0, 100)}
 						icon={msg.guild.iconUrl}
+						class="mb-4"
 					/>
 				{/if}
 			{/each}
