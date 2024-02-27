@@ -1,9 +1,11 @@
 import { getMode } from '$lib/modules/env';
 import { join } from 'path-browserify';
 
+// The library paths when in dev or production
 const LibPaths = {
 	notifications: {
 		darwin: {
+			// Starting in the lib folder
 			prod: '/lib/alerter',
 			dev: '/build/lib/MacOS/alerter',
 		},
