@@ -1,3 +1,5 @@
+# ⚠️ Archived due to inactivity in development and not having the time to continue working on this. A re-write may come.
+
 <div align="center">
     <img src=".github/assets/logo.png" style="width:30%;">
 </div>
